@@ -19,7 +19,7 @@ public class SwapNumber {
 		int temp;
 		temp = a; 
 		a = b;
-		b = temp;
+		b = temp; // Hoan doi bien
 	}
 	public static void main(String[] agrs) {
 		SwapNumber sw1 = new SwapNumber(1,2);
