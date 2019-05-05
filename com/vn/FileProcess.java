@@ -61,33 +61,7 @@ public class FileProcess {
 	
 	public void CopyFile(String srcfile, String dstfile)
 	{
-		/*
-		 * try { // Đọc file: Input FileInputStream fis = null ; InputStreamReader
-		 * isr=new InputStreamReader(fis, "UTF-8"); BufferedReader br=new
-		 * BufferedReader(isr);
-		 * 
-		 * // Ghi file: 
-		 * Output FileOutputStream fos=new FileOutputStream(dstfile);
-		 * OutputStreamWriter osw=new OutputStreamWriter(fos, "UTF-8"); BufferedWriter
-		 * bw=new BufferedWriter(osw);
-		 * 
-		 * String line=br.readLine(); try {
-		 * 
-		 * fis = new FileInputStream(srcfile);
-		 * System.out.println("Total file size to read (in bytes) : " +
-		 * fis.available());
-		 * 
-		 * int content; while ((content = fis.read()) != -1) { // convert to char and
-		 * display it System.out.print((char) content); fos.write(content);
-		 * 
-		 * } fos.write(1); fos.close();
-		 * 
-		 * } catch (IOException e) { e.printStackTrace(); } finally { try { if (fis !=
-		 * null) fis.close(); } catch (IOException ex) { ex.printStackTrace(); } }
-		 * br.close(); isr.close(); fis.close(); // phải đóng file nếu ko dữ liệu lưu
-		 * xuống file = rỗng bw.close(); osw.close(); //fos.close(); } catch(Exception
-		 * ex) { ex.printStackTrace(); }
-		 */
+		
 		FileInputStream fis = null;
 		FileOutputStream fos = null;
 		try {
@@ -123,17 +97,43 @@ public class FileProcess {
 	}
 	public static void main(String agrs[]) throws FileNotFoundException, IOException
 	{
-		System.out.println("Nhập file nguồn");	
+		boolean cont = true;
+		while (cont == true)
+		{
+		System.out.println("Chọn chức năng: Đọc file (d) Ghi file (w) Xóa file (x) Copy File (c) or Thoát (other any key)");	
 		Scanner input = new Scanner(System.in);
 	 	String s1 = input.nextLine(); 
-	 	System.out.println("Nhập file đích");	
-		input = new Scanner(System.in);
-	 	String s2 = input.nextLine(); 
 	 	FileProcess cp = new FileProcess();
-	  	//cp.ReadFile(s1);
-	 	//cp.WriteFile(s2);
-	 	cp.CopyFile(s1, s2);
-	 	
+	 	switch (s1) {
+		case "d":
+			System.out.println("Nhập file nguồn");	
+			input = new Scanner(System.in);
+		 	s1 = input.nextLine();
+			cp.ReadFile(s1);
+			System.out.println("####");
+			System.out.println("#### Đã đọc xong file ####");
+			break;
+		case "w":
+			System.out.println("Nhập file đích");	
+			input = new Scanner(System.in);
+		 	s1 = input.nextLine(); 
+			cp.WriteFile(s1);
+			break;
+		case "c":
+			System.out.println("Nhập file nguồn");	
+			input = new Scanner(System.in);
+		 	s1 = input.nextLine(); 
+		 	System.out.println("Nhập file đích");	
+			input = new Scanner(System.in);
+		 	String s2 = input.nextLine(); 
+		 	cp.CopyFile(s1, s2);
+		 	break;
+		default:
+			cont = false;
+			break;
+		}
+		} 
+	
 	}
 
 }
